@@ -47,11 +47,19 @@ export const Navbar = () => {
     />
   );
 
+  const careerSubItems = [
+    { key: "academic", label: "📚 Academic Background", href: "/careerGoals/academic" },
+    { key: "expertize", label: "🏢 Industry Expertize", href: "/careerGoals/expertize" },
+    { key: "publications", label: "🎓 Research Publications", href: "/careerGoals/publications" },
+    { key: "projects", label: "🚀 Ongoing Projects", href: "/careerGoals/projects" },
+    { key: "experiences", label: "🧠 Experiences", href: "/careerGoals/experiences" },
+  ];
+
   return (
     <HeroUINavbar
-  maxWidth="full"
-  className="top-0 z-50 bg-gradient-to-r fixed from-indigo-900/80 via-purple-900/80 to-indigo-800/80 text-white backdrop-blur-md"
->
+      maxWidth="full"
+      className="top-0 z-50 bg-gradient-to-r fixed from-indigo-900/80 via-purple-900/80 to-indigo-800/80 text-white backdrop-blur-md"
+    >
       <NavbarContent className="basis-1/5 sm:basis-full" justify="start">
         <NavbarBrand className="gap-3 max-w-full">
           <Link
@@ -60,68 +68,46 @@ export const Navbar = () => {
             href="/"
           >
             <Logo />
-            <p className="font-bold text-inherit">Anisur Rahman Al Amin</p>
+            <p className="font-bold text-inherit">MD. AL-AMIN</p>
           </Link>
         </NavbarBrand>
-       <div className="hidden lg:flex gap-4 justify-start ml-2">
-  {siteConfig.navItems.map((item) =>
-    item.label === "Career Goals" ? (
-      <NavbarItem key={item.href} className="relative group">
-  <div className="cursor-pointer rounded-md hover:text-primary transition-colors duration-200">
-    {item.label}
-  </div>
+        <div className="hidden lg:flex gap-4 justify-start ml-2">
+          {siteConfig.navItems.map((item) =>
+            item.label === "Career Goals" ? (
+              <NavbarItem key={item.href} className="relative group">
+                <div className="cursor-pointer rounded-md hover:text-primary transition-colors duration-200">
+                  {item.label}
+                </div>
 
-  {/* Hover Dropdown */}
-  <div className="absolute top-full mx-auto py-2 hidden group-hover:flex flex-col  from-indigo-900 via-purple-900 to-indigo-800 text-gray-100 shadow-lg rounded-lg z-50 w-64 p-2 transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 group-hover:opacity-100 opacity-0">
-    <Link
-      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md transition-colors"
-      href="/careerGoals/academic"
-    >
-      📚 Academic Background
-    </Link>
-    <Link
-      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md transition-colors"
-      href="/careerGoals/expertize"
-    >
-      🏢 Industry Expertize
-    </Link>
-    <Link
-      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md transition-colors"
-      href="/careerGoals/publications"
-    >
-      🎓 Research Publications
-    </Link>
-    <Link
-      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md transition-colors"
-      href="/careerGoals/projects"
-    >
-      🚀 Ongoing Projects
-    </Link>
-    <Link
-      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 rounded-md transition-colors"
-      href="/careerGoals/experiences"
-    >
-      🧠 Experiences
-    </Link>
-  </div>
-</NavbarItem>
-
-    ) : (
-      <NavbarItem key={item.href}>
-        <Link
-          className={clsx(
-            linkStyles({ color: "foreground" }),
-            "data-[active=true]:text-primary data-[active=true]:font-medium"
+                {/* Hover Dropdown */}
+                <div className="absolute top-full mx-auto py-2 hidden group-hover:flex flex-col bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 text-gray-100 shadow-lg rounded-lg z-50 w-64 p-2 transition-all duration-300 ease-in-out transform scale-95 group-hover:scale-100 group-hover:opacity-100 opacity-0">
+                  {careerSubItems.map((subItem) => (
+                    <Link
+                      key={subItem.key}
+                      href={subItem.href}
+                      className="flex items-center gap-2 px-4 py-2 hover:bg-gray-100 hover:text-black rounded-md transition-colors"
+                    >
+                      {subItem.label}
+                    </Link>
+                  ))}
+                </div>
+              </NavbarItem>
+            ) : (
+              <NavbarItem key={item.href}>
+                <Link
+                  className={clsx(
+                    linkStyles({ color: "foreground" }),
+                    "data-[active=true]:text-primary data-[active=true]:font-medium"
+                  )}
+                  color="foreground"
+                  href={item.href}
+                >
+                  {item.label}
+                </Link>
+              </NavbarItem>
+            )
           )}
-          color="foreground"
-          href={item.href}
-        >
-          {item.label}
-        </Link>
-      </NavbarItem>
-    )
-  )}
-</div>
+        </div>
 
       </NavbarContent>
 
@@ -168,24 +154,26 @@ export const Navbar = () => {
         {searchInput}
         <div className="mx-4 mt-2 flex flex-col gap-2">
           {siteConfig.navMenuItems.map((item, index) => (
-            <NavbarMenuItem key={`${item}-${index}`}>
+            <NavbarMenuItem key={`${item.href}-${index}`}>
               <Link
                 color={
-                  index === 2
+                  item.href === "/projects"
                     ? "primary"
-                    : index === siteConfig.navMenuItems.length - 1
+                    : item.href === "/logout"
                       ? "danger"
                       : "foreground"
                 }
-                href="#"
+                href={item.href}
                 size="lg"
               >
                 {item.label}
               </Link>
             </NavbarMenuItem>
           ))}
+  
         </div>
       </NavbarMenu>
+
     </HeroUINavbar>
   );
 };

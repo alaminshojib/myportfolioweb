@@ -1,10 +1,8 @@
 import DefaultLayout from "@/layouts/default";
 import {
-  SparklesIcon as OutlineSparklesIcon,
-  DevicePhoneMobileIcon,
-  RocketLaunchIcon,
-  AcademicCapIcon,
-  EnvelopeIcon,
+
+  
+
   StarIcon,
   HeartIcon,
   MusicalNoteIcon,
@@ -13,7 +11,12 @@ import {
 import MyPhoto from "@/assets/mda-transparent.png";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
+import Skills from "./careerGoalsPages/skills";
+import Projects from "./careerGoalsPages/projects";
+import Education from "./careerGoalsPages/academic";
+import Contact from "./contact";
 // import { useEffect, useState } from "react";
+
 
 export default function HomePage() {
   // Cursor effect
@@ -88,93 +91,68 @@ export default function HomePage() {
 
       <div className="min-h-screen text-white font-sans">
         {/* Hero Section */}
-        <section className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-center px-6 md:px-16 py-16 bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 text-white overflow-hidden group">
+
+
+        <section
+          className="relative min-h-screen flex flex-col-reverse md:flex-row items-center justify-between 
+             px-6 sm:px-12 md:px-20 lg:px-28 xl:px-36 2xl:px-48 
+             py-14 md:py-24 lg:py-32 
+             bg-gradient-to-br from-indigo-900 via-purple-900 to-indigo-800 
+             text-white overflow-hidden group"
+        >
           {/* Text Content */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className="z-10 max-w-xl text-center md:text-left"
+            className="z-10 max-w-xl text-center md:text-left mt-12 md:mt-0"
           >
-            <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
-              I'm {" "}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-6 leading-tight tracking-tight">
+              I'm{" "}
               <motion.span
                 className="bg-gradient-to-r from-pink-400 via-yellow-400 to-red-500 bg-clip-text text-transparent"
                 animate={{ backgroundPosition: ["0% 50%", "100% 50%"] }}
                 transition={{ duration: 5, repeat: Infinity, ease: "linear" }}
                 style={{ backgroundSize: "200% 200%" }}
               >
-              Mr. Al Amin
+                Mr. Al-Amin
               </motion.span>
             </h1>
-            <p className="text-lg text-gray-300 mb-6">
+            <p className="text-base sm:text-lg text-gray-300 mb-8 md:max-w-md max-w-sm mx-auto md:mx-0 leading-relaxed">
               Passionate Web Developer & Animal Science student. I blend design, code, and compassion.
             </p>
             <a
               href="#projects"
-              className="inline-flex items-center px-8 py-4 rounded-full bg-pink-600 hover:bg-pink-700 transition-all text-lg font-semibold shadow-lg hover:shadow-pink-500/50"
+              className="inline-flex items-center px-8 py-4 rounded-full bg-pink-600 hover:bg-pink-700 transition-all text-base sm:text-lg font-semibold shadow-lg hover:shadow-pink-500/50 mx-auto md:mx-0"
             >
               View Projects
-              <ArrowRightIcon className="w-6 h-6 ml-2" />
+              <ArrowRightIcon className="w-6 h-6 ml-3" />
             </a>
           </motion.div>
 
           {/* Image Content */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1.2 }}
-            className="z-10"
+            className="z-10 mt-12 md:mt-0 flex-shrink-0"
           >
             <img
               src={MyPhoto}
               alt="Md. Al-Amin"
-              className="w-[320px] md:w-[400px] h-[320px] md:h-[400px] rounded-full object-contain bg-white/10 backdrop-blur-xl p-2 shadow-2xl border-4 border-white/20"
+              className="w-48 sm:w-72 md:w-96 h-48 sm:h-72 md:h-96 rounded-full object-contain bg-white/10 backdrop-blur-xl p-3 shadow-2xl border-4 border-white/25 mx-auto md:mx-0"
+              loading="lazy"
             />
           </motion.div>
         </section>
 
+
+
         {/* Skills Section */}
-        <section className="py-20 px-6 bg-gradient-to-tr from-purple-900 via-indigo-900 to-purple-900 text-white text-center">
-          <h2 className="text-3xl font-bold mb-10 border-b-4 border-pink-500 inline-block pb-2">My Skills</h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            {["HTML5", "CSS3", "JavaScript", "React", "Tailwind", "Firebase", "Framer Motion", "GitHub"].map((skill, i) => (
-              <div key={i} className="bg-indigo-700 py-3 px-4 rounded-lg shadow-md cursor-pointer hover:scale-105 transition-transform duration-300">
-                {skill}
-              </div>
-            ))}
-          </div>
-        </section>
+        <Skills></Skills>
 
         {/* Projects Section */}
-        <section id="projects" className="bg-white text-gray-900 py-20 px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center border-b-4 border-indigo-600 inline-block pb-2">Projects</h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                icon: <RocketLaunchIcon className="w-6 h-6 text-purple-600" />,
-                title: "Matrimony Platform",
-                desc: "Firebase-based matchmaking app.",
-              },
-              {
-                icon: <DevicePhoneMobileIcon className="w-6 h-6 text-indigo-600" />,
-                title: "Portfolio Website",
-                desc: "Built with Vite, HeroUI & Framer Motion.",
-              },
-              {
-                icon: <OutlineSparklesIcon className="w-6 h-6 text-pink-500" />,
-                title: "Feed Calculator",
-                desc: "Daily livestock ration app.",
-              },
-            ].map((project, i) => (
-              <div key={i} className="bg-gray-100 p-6 rounded-lg shadow cursor-pointer hover:shadow-lg hover:scale-105 transition duration-300">
-                <div className="mb-3">{project.icon}</div>
-                <h3 className="text-xl font-semibold">{project.title}</h3>
-                <p className="text-gray-700 mt-1">{project.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+        <Projects></Projects>
 
         {/* Extra Topics Section */}
         <section className="py-20 px-6 bg-gradient-to-tr from-indigo-900 via-purple-800 to-indigo-900 text-white text-center max-w-4xl mx-auto space-y-20">
@@ -204,27 +182,11 @@ export default function HomePage() {
         </section>
 
         {/* Education Section */}
-        <section className="py-20 px-6 bg-white text-gray-900 text-center">
-          <AcademicCapIcon className="w-8 h-8 mx-auto text-indigo-600 mb-4" />
-          <h2 className="text-3xl font-bold mb-4 border-b-4 border-indigo-600 inline-block pb-2">Education</h2>
-          <p>
-            B.Sc. in Animal Husbandry — <span className="font-medium">Bangladesh Agricultural University</span>
-          </p>
-        </section>
+      <Education></Education>
 
         {/* Contact Section */}
-        <section id="contact" className="py-20 px-6 bg-indigo-900 text-white text-center">
-          <EnvelopeIcon className="w-8 h-8 mx-auto text-pink-400 mb-4" />
-          <h2 className="text-3xl font-bold mb-4 border-b-4 border-pink-400 inline-block pb-2">Get In Touch</h2>
-          <p>
-            Email me: <a href="mailto:mdalamin@example.com" className="text-pink-300 underline">mdalamin@example.com</a>
-          </p>
-        </section>
+       <Contact></Contact>
 
-        {/* Footer */}
-        <footer className="bg-gray-900 text-gray-400 text-center py-6">
-          <p>&copy; 2025 Md. Al-Amin. All rights reserved.</p>
-        </footer>
       </div>
     </DefaultLayout>
   );
